@@ -1,0 +1,378 @@
+.app-shell {
+  min-height: 100vh;
+  color: #10243e;
+}
+
+.shell-view {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #d7e1ee;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.topbar h1 {
+  margin: 0.25rem 0 0;
+  font-size: 1.4rem;
+}
+
+.topbar-actions,
+.topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.topbar-user-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.topbar-user-copy strong {
+  font-size: 0.95rem;
+}
+
+.topbar-user-copy span {
+  color: #5d728c;
+  font-size: 0.88rem;
+}
+
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 6.75rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  background: #e3edf8;
+  color: #24496f;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.role-admin {
+  background: #e6f4ea;
+  color: #17653a;
+}
+
+.role-caregiver {
+  background: #eef2ff;
+  color: #3949ab;
+}
+
+.role-pending {
+  background: #fff4db;
+  color: #9a6a00;
+}
+
+.eyebrow {
+  margin: 0;
+  color: #61778f;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.workspace,
+.landing-layout {
+  width: min(1200px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1.5rem 0 2.5rem;
+}
+
+.landing-layout {
+  display: grid;
+  gap: 1.25rem;
+  align-content: center;
+  min-height: calc(100vh - 88px);
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr);
+}
+
+.hero-card {
+  padding: 2rem;
+}
+
+.hero-card h2 {
+  margin: 0.5rem 0 0.75rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+}
+
+.hero-copy {
+  max-width: 48rem;
+  color: #50657d;
+  font-size: 1.05rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.dashboard-grid > .panel:nth-child(1) {
+  grid-column: span 12;
+}
+
+.dashboard-grid > .panel:nth-child(2),
+.dashboard-grid > .panel:nth-child(3) {
+  grid-column: span 6;
+}
+
+.panel {
+  background: #ffffff;
+  border: 1px solid #d7e1ee;
+  border-radius: 20px;
+  padding: 1.25rem;
+  box-shadow: 0 10px 30px rgba(16, 36, 62, 0.05);
+}
+
+.panel h2,
+.panel h3,
+.panel p {
+  margin-top: 0;
+}
+
+.panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.summary-card {
+  padding: 1rem;
+  border-radius: 16px;
+  background: #f6f9fc;
+  border: 1px solid #e4edf6;
+}
+
+.summary-card strong {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 1.8rem;
+}
+
+.summary-label {
+  color: #5e738c;
+  font-size: 0.85rem;
+}
+
+.patient-list,
+.alert-feed {
+  min-height: 18rem;
+}
+
+.stack-list,
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stack-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.feature-list {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.list-card {
+  padding: 1rem;
+  border-radius: 16px;
+  border: 1px solid #e4edf6;
+  background: #fbfdff;
+}
+
+.list-card-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.35rem;
+}
+
+.list-card h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.list-card p {
+  margin: 0;
+  color: #4e627a;
+}
+
+.severity-low {
+  border-color: #d4ead8;
+  background: #f5fbf6;
+}
+
+.severity-medium {
+  border-color: #f4dfb1;
+  background: #fffaf0;
+}
+
+.severity-high {
+  border-color: #f2c6c6;
+  background: #fff4f4;
+}
+
+.pill,
+.count-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.25rem 0.65rem;
+  background: #edf3fb;
+  color: #36506b;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.form-grid {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.form-grid label {
+  display: grid;
+  gap: 0.45rem;
+  color: #233955;
+  font-weight: 600;
+}
+
+.helper-text {
+  color: #5c728b;
+  margin-bottom: 1rem;
+}
+
+.status-message {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  background: #eef4fb;
+  color: #26496d;
+  border: 1px solid #d8e6f4;
+}
+
+.status-success {
+  background: #eef9f1;
+  border-color: #cfe9d7;
+  color: #1f6a3f;
+}
+
+.status-error {
+  background: #fff1f1;
+  border-color: #f2cccc;
+  color: #b43c3c;
+}
+
+.button-primary,
+.button-secondary {
+  border: 0;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 120ms ease, opacity 120ms ease, box-shadow 120ms ease;
+}
+
+.button-primary {
+  background: linear-gradient(135deg, #1f6fe5, #0d8fe6);
+  color: #ffffff;
+  box-shadow: 0 10px 20px rgba(31, 111, 229, 0.2);
+}
+
+.button-secondary {
+  background: #eef4fb;
+  color: #234264;
+}
+
+.button-primary:hover,
+.button-secondary:hover {
+  transform: translateY(-1px);
+}
+
+.button-primary:disabled,
+.button-secondary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+@media (max-width: 960px) {
+  .landing-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-grid > .panel,
+  .dashboard-grid > .panel:nth-child(1),
+  .dashboard-grid > .panel:nth-child(2),
+  .dashboard-grid > .panel:nth-child(3) {
+    grid-column: span 12;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .topbar,
+  .topbar-actions,
+  .topbar-user,
+  .list-card-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .topbar-actions {
+    width: 100%;
+  }
+
+  .role-badge {
+    min-width: 0;
+  }
+
+  .workspace,
+  .landing-layout {
+    width: min(100% - 1rem, 1200px);
+    padding-top: 1rem;
+  }
+}

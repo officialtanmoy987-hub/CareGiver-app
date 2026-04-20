@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: caregiver-app
+    runtime: node
+    rootDir: caregiver-app
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 24.14.0
+      - key: CLERK_SECRET_KEY
+        sync: false
+      - key: VITE_CLERK_PUBLISHABLE_KEY
+        sync: false
