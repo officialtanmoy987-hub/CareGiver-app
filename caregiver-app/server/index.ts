@@ -39,6 +39,12 @@ type ClerkUser = {
 type ClerkApiClient = {
   users: {
     getUser(userId: string): Promise<ClerkUser>;
+    updateUserMetadata(
+      userId: string,
+      params: {
+        publicMetadata: Record<string, unknown>;
+      },
+    ): Promise<ClerkUser>;
   };
 };
 
@@ -67,6 +73,10 @@ const createPatientSchema = z.object({
 const assignCaregiverSchema = z.object({
   patientId: z.string().trim().min(1),
   caregiverId: z.string().trim().min(1),
+});
+
+const setRoleSchema = z.object({
+  role: z.enum(["admin", "caregiver"]),
 });
 
 const caregivers: CaregiverProfile[] = [
@@ -281,6 +291,29 @@ app.get("/api/me", async (req, res, next) => {
     if (!userId) {
       return;
     }
+
+    const summary = await getCurrentUserSummary(userId);
+    res.json(summary);
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.post("/api/me/role", async (req, res, next) => {
+  try {
+    const userId = requireUserId(req, res);
+
+    if (!userId) {
+      return;
+    }
+
+    const input = setRoleSchema.parse(req.body);
+    const client = await getClerkApiClient();
+    await client.users.updateUserMetadata(userId, {
+      publicMetadata: {
+        role: input.role,
+      },
+    });
 
     const summary = await getCurrentUserSummary(userId);
     res.json(summary);

@@ -15,6 +15,7 @@ import {
   getAdminDashboard,
   getCaregiverDashboard,
   getMe,
+  setMyRole,
   type MeResponse,
 } from "./lib/api";
 import type {
@@ -653,16 +654,57 @@ function AdminWorkspace() {
 }
 
 function AccessPendingView({ me }: { me: MeResponse }) {
+  const [selectedRole, setSelectedRole] = useState<AppRole>("caregiver");
+  const [isSaving, setIsSaving] = useState(false);
+  const [feedback, setFeedback] = useState<FeedbackState | null>(null);
+
+  const handleRoleSelect = async (role: AppRole) => {
+    setSelectedRole(role);
+    setIsSaving(true);
+    setFeedback(null);
+
+    try {
+      await setMyRole(role);
+      window.location.reload();
+    } catch (error) {
+      setFeedback({
+        tone: "error",
+        message: formatApiError(error),
+      });
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
   return (
     <div className="panel">
       <h2>Access pending</h2>
       <StatusMessage>
-        This signed-in account does not have an approved role yet. Set Clerk public metadata role to
-        <strong> admin</strong> or <strong>caregiver</strong> to unlock the appropriate view.
+        This signed-in account does not have an approved role yet. Choose a role below to unlock the
+        appropriate workspace for this account.
       </StatusMessage>
       <p>
         Signed in as <strong>{me.email ?? me.name ?? me.userId ?? "current user"}</strong>.
       </p>
+      <div className="hero-actions">
+        <button
+          className="button-primary"
+          disabled={isSaving}
+          onClick={() => void handleRoleSelect("caregiver")}
+          type="button"
+        >
+          {isSaving && selectedRole === "caregiver" ? "Setting caregiver…" : "Continue as caregiver"}
+        </button>
+        <button
+          className="button-secondary"
+          disabled={isSaving}
+          onClick={() => void handleRoleSelect("admin")}
+          type="button"
+        >
+          {isSaving && selectedRole === "admin" ? "Setting admin…" : "Continue as admin"}
+        </button>
+      </div>
+      {feedback ? <StatusMessage tone={feedback.tone}>{feedback.message}</StatusMessage> : null}
     </div>
   );
 }

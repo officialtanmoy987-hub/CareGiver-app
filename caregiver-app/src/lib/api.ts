@@ -82,6 +82,13 @@ export function getMe() {
   return requestJson<MeResponse>("/api/me");
 }
 
+export function setMyRole(role: AppRole) {
+  return requestJson<MeResponse>("/api/me/role", {
+    method: "POST",
+    body: JSON.stringify({ role }),
+  });
+}
+
 export function getCaregiverDashboard() {
   return requestJson<CaregiverDashboardData>("/api/caregiver/dashboard");
 }
